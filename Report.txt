@@ -1,0 +1,34 @@
+Part A: contains()
+ 
+n       vector      list        unordered_set   Tree
+1000    0.000404    0.003668    0.000092        0.003752
+2000    0.000840    0.008520    0.000089        0.009887
+4000    0.001961    0.016714    0.000140        0.023704
+8000    0.006099    0.040630    0.000241        0.057646
+ 
+Part B: query()
+ 
+CompareItemName test
+ 
+n       vector      list        unordered_set   Tree
+1000    0.044145    0.043480    0.042891        0.031995
+2000    0.086586    0.086765    0.087322        0.082044
+4000    0.196128    0.741520    0.204373        0.211826
+8000    0.617540    0.549917    0.631977        0.865872
+ 
+CompareItemWeight test
+ 
+n       vector      list        unordered_set   Tree
+1000    0.006638    0.008556    0.007948        0.000749
+2000    0.010412    0.014396    0.017399        0.001748
+4000    0.022073    0.029189    0.035788        0.002830
+8000    0.042761    0.085176    0.088184        0.008314
+
+Conclusion:
+For contains(), the results were expected as hash inventory was by far the fastest and stayed almost the same as n grew, because it can jump straight to the item using 
+the name's hash. The vector, list, and tree all got slower as n grew, since they have to check items one by one. The list and tree were the slowest because their items 
+are spread out in memory, so they are slower to walk through than a vector. The tree is slow here because we have to check every node for a matching name, which is the same as going 
+through the whole list. For query() with weight, the tree was the fastest. The range was very small (0.1 wide), so the tree could skip most of the nodes, while the other three 
+had to look at every item. For query() with name, the results were closer together. The two names were picked at random, so the size of the range changed each time, and bigger
+ranges take longer for every inventory type. A hash inventory is better when we mostly look up, add, or remove items by name, since those are very fast. A tree inventory is better 
+when we need to find all items in a range of a value, like all items between two weights, because the tree is sorted and can skip parts it does not need.
