@@ -22,8 +22,8 @@ bool CompareItemWeight::lessThan(const Item& a, const Item& b)
 
 bool CompareItemWeight::equal(const Item& a, const Item& b)
 {
-    return std::abs(a.weight_ - b.weight_) < 0.00001; // Note the threshold for float equality (we can't just use
-                                                      // '==')
+    return std::abs(a.weight_ - b.weight_) < 0.00001; 
+                                                
 }
 
 bool CompareItemWeight::leq(const Item& a, const Item& b)
